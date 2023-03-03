@@ -250,7 +250,9 @@ Utils.isNwjs = function() {
  */
 Utils.isMobileDevice = function() {
     const r = /Android|webOS|iPhone|iPad|iPod|BlackBerry|Opera Mini/i;
-    return !!navigator.userAgent.match(r);
+    // Currently, iPad is no longer detected as 'iPad' but by 'Macintosh' just like the computer
+    const isIpadDevice = !!navigator.userAgent.match(/Macintosh/i) && navigator.maxTouchPoints > 0;
+    return !!navigator.userAgent.match(r) || isIpadDevice;
 };
 
 /**
